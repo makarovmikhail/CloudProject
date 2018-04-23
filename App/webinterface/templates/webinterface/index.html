@@ -1,0 +1,41 @@
+{% load static %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'webinterface/style.css' %}" />
+
+<h2>
+10 latest tasks:
+</h2>
+{% if latest_object_list %}
+	<div class="list-group">
+    {% for obj in latest_object_list %}
+        {#<li><a href="/startpage/{{ obj.id }}/">{{ "n_predicts: " obj.n_predicts }}</a></li>#}
+		<a href="#" class="list-group-item list-group-item-success">Prediction number: {{ obj.n_predicts }} Splits number:  {{ obj.n_splits }} Result: {{obj.status}}</a>
+    {% endfor %}
+	<div/>
+{% else %}
+    <p>You have no tasks.</p>
+{% endif %}
+
+<h2>Add new task:</h2>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form class="form-horizontal" action="{% url 'webinterface:addtask' %}" method="post">
+{% csrf_token %}
+<h4>Choose n_predicts</h4>
+{% for i in predict_list %}	
+    <div class="radio-inline"><input type="radio" name="n_predicts" id="{{ forloop.counter }}" value="{{ i }}" />
+    <label for="n_predicts{{ forloop.counter }}">{{ i }}</label></div>
+{% endfor %}
+</br>
+<h4>Choose n_splits</h4>
+{% for i in split_list %}	
+    <div class="radio-inline">
+		<input type="radio" name="n_splits" id="{{ forloop.counter }}" value="{{ i }}" />
+		<label for="n_splits{{ forloop.counter }}">{{ i }}</label>
+	</div>
+{% endfor %}
+</br>
+<input class="btn btn-success" type="submit" value="Add task" />
+</form>
