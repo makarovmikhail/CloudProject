@@ -9,4 +9,4 @@ To execute project you need:
 When you are visiting this page: http://localhost:8000/webinterface/
 you have an opportunity to add some tasks using html form, and view 10 latest tasks with results.
 After your task was added one of ComputeCenter solve it and then results will be updated.
-Administrator can redact tasks visiting this page: http://localhost:8000/admin/
+Administrator can edit tasks visiting this page: http://localhost:8000/admin/
