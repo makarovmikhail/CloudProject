@@ -1,4 +1,4 @@
-Grid&Cloud course project
+# Grid&Cloud course project
 
 To execute project you need:
 1) RabbitMQ Started on localhost by command: rabbitmqctl.bat list_queues
